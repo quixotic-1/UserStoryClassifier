@@ -1,0 +1,206 @@
+Instruction: 
+Classify each user story into exactly one of the following problem types (0–6).
+If no issues are present, output Problem type 0 (ID:0).
+
+Problem type 0: No Problem (ID:0)   
+Problem type 1: Conflate Problems with Solutions (ID:1) 
+Problem type 2: Misplaced Requirements (ID:2) 
+Problem type 3: Ultra-huge story (ID:3) 
+Problem type 4: Technical User Story (ID:4) 
+Problem type 5: Poorly defined user roles (ID:5) 
+Problem type 6: Parakeet Value (ID:6) 
+
+If a problem is found:  
+- Rewrite the user story with the minimal changes needed to fix the problem, while preserving its original intent.  
+- Also provide a fully rewritten good user story for the same scenario, following the correct format:  
+  “As a <user>, I want <goal> so that <reason>” (INVEST principles: Independent, Negotiable, Valuable, Estimable, Small, Testable).  
+
+If no problems are found:  
+- Return the original user story unchanged.  
+
+     
+Context:
+
+User Story -
+A user story is a short simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.
+
+The format of a user story is as follows:
+As a <type of user>, I want <some goal> so that <some reason>
+
+If a user story has 0 issues and has some of the below characteristics, it counts as this - Problem type 0: No Problem (ID:0)
+
+Here are some good characteristics of good user stories (INVEST).
+
+Independent:
+• Shouldn't have dependencies between stories
+• Dependencies cause delays. Don’t get user-ready software until both, or all dependent stories are complete.
+
+Negotiable:
+• Isn’t a contract 
+• Story is an evolving conversation between product owner and development team 
+• Builds a shared understanding and harnesses everyone’s expertise 
+
+Valuable: 
+• Value to users or customers
+• What user needs does it meet?
+
+Estimable:
+• Story gives the development team enough detail to estimate the size.
+• Helps to plan each sprint iteration
+
+Small:
+• Could be developed in a sprint
+• The smaller the story, the more likely it will deliver value by iteration’s end.
+
+Testable:
+• Story is clear enough that you can assess if the story is done
+• Acceptance criteria become acceptance tests
+
+---
+
+*** Problem types (detailed): ***
+
+""""
+Problem type 1: Conflate Problems with Solutions (ID:1)  
+What happens: User stories include technical/implementation details or prescribe a solution instead of just describing the user’s need.  
+How to identify:  
+- Look for overly detailed technical specifications (e.g., exact colors, RGB codes, database structures).  
+- Story suggests how to solve the problem instead of focusing on what the user needs.  
+- Example sign: A story that specifies drop-downs, sliders, or API-based search instead of describing the underlying user need.  
+""
+Example 1: As a shopper, I want a drop-down menu with autocomplete search and an API-based product filter so that I can quickly find the items I want.
+Problem: The story specifies exact UI elements and technical implementation (drop-down, autocomplete, API filter) instead of describing the underlying user need.
+Improvement: As a shopper, I want an easy way to find products quickly so that I can complete my shopping efficiently.
+""
+Example 2: As a teacher, I want all student scores automatically calculated in a Google Sheet using a custom script so that I don’t have to manually compute averages.
+Problem: The story prescribes a technical solution (Google Sheet + script) instead of focusing on the actual goal (calculating averages).
+Improvement: As a teacher, I want student scores totaled and averaged automatically so that I can spend more time on teaching and less on calculations.
+
+""""
+Problem type 2: Misplaced Requirements (ID:2)  
+What happens: Extra requirements get shoved into the “so that” part, or the rationale is unclear.  
+How to identify:  
+- The “so that…” includes more features instead of explaining the why.  
+- Multiple requirements crammed into one story.  
+- The story mixes objective (output) with the real goal (outcome).  
+- Example sign: “I need to save my list, so that I can print or duplicate it later.” → printing and duplicating are separate requirements, not rationale.  
+""
+Example 1: As a project manager, I want to generate a report so that I can see the budget, track project milestones, and assign tasks to team members.
+Problem: The “so that” clause includes multiple unrelated requirements (budget tracking, milestone tracking, task assignment). This makes the story too broad and confuses the real goal.
+Improvement: As a project manager, I want to generate a budget report so that I can monitor project spending.
+""
+Example 2: As a student, I want to submit my assignments online so that the system confirms submission, notifies my teacher, and grades my work automatically.
+Problem: The rationale contains multiple requirements and mixes objectives with outcomes. It’s unclear which part is the real goal for the user.
+Improvement: As a student, I want to submit my assignments online so that I receive confirmation of submission.
+
+
+"""
+Problem type 3: Ultra-huge story (ID:3)  
+What happens: Story is too broad, making it un-estimable and unimplementable within a sprint.  
+How to identify:  
+- Contains many “and” or “or” statements.  
+- Describes multiple unrelated features.  
+- Hard to see one clear business value.  
+- Example sign: “I need to save, copy, print, and email my list…” → really 4 separate stories.  
+""
+Example 1: As an e-commerce admin, I want to manage products, update inventory, process refunds, and generate sales reports so that I can run the store efficiently.
+Problem: The story is too broad and contains multiple unrelated features, making it impossible to estimate or implement in a single sprint.
+Improvement:
+* As an e-commerce admin, I want to manage products so that I can keep the store catalog up to date.
+* As an e-commerce admin, I want to update inventory so that stock levels are accurate.
+* As an e-commerce admin, I want to process refunds so that customers are properly reimbursed.
+* As an e-commerce admin, I want to generate sales reports so that I can track store performance.
+""
+Example 2: As a social media manager, I want to schedule posts, respond to comments, analyze engagement metrics, and collaborate with the team so that I can grow the brand.
+Problem: The story bundles too many unrelated tasks together, making it too large to deliver in a single sprint.
+Improvement:
+* As a social media manager, I want to schedule posts so that content is published consistently.
+* As a social media manager, I want to respond to comments so that followers feel engaged.
+* As a social media manager, I want to analyze engagement metrics so that I can measure post performance.
+* As a social media manager, I want to collaborate with the team so that campaigns run smoothly.
+
+
+""""
+Problem type 4: Technical User Story (ID:4)  
+What happens: Story is written for technical work, not for delivering end-user value.  
+How to identify:  
+- The “so that” clause only benefits developers/testers.  
+- Story mentions things like “test plans,” “system stores data,” or “database tables” instead of business outcomes.  
+- Example sign: “As a tester, I want detailed test plans so that I can test the system.”  
+""
+Example 1: As a developer, I want to write unit tests for all modules so that the code coverage reaches 100%.
+Problem: This story focuses on a technical activity (writing tests) rather than delivering direct value to the end user. Users care about working features, not code coverage metrics.
+Improvement: As a customer, I want the system to work reliably so that I can complete tasks without errors.
+""
+Example 2: As a database administrator, I want to normalize all database tables so that queries run efficiently.
+Problem: This story is purely technical and benefits developers/DBAs rather than end users. It does not describe user-facing value.
+Improvement: As a user, I want search and data retrieval to be fast so that I can access information quickly.
+
+
+""""
+Problem type 5: Poorly defined user roles (ID:5)  
+What happens: Roles are either too vague, too specific, or not even real users.  
+How to identify:  
+- Role is just “user” or “business user” (too vague).  
+- Role is too departmental (e.g., “marketing manager”) when multiple groups have same needs.  
+- Story starts with “As the system…” → not a user.  
+- Example sign: “As a business user, I want a report…” → which user exactly? Needs specificity.  
+""
+Example 1: As a user, I want to approve expense reports so that company spending is controlled.
+Problem: The role “user” is too vague; it doesn’t specify who actually has the authority to approve expenses.
+Improvement: As a finance manager, I want to approve expense reports so that company spending is controlled.
+""
+Example 2: As an employee, I want to access confidential HR documents so that I can stay informed about company policies.
+Problem: The role “employee” is too broad; not all employees should have access to confidential HR documents.
+Improvement: As an HR team member, I want to access confidential HR documents so that I can manage and communicate company policies appropriately.
+
+
+""""
+Problem type 6: Parakeet Value (ID:6)  
+What happens: The “so that” repeats the “I want” with no deeper value.  
+How to identify:  
+- The rationale just rewords the request without explaining why it matters.  
+- No business value or usability context is clear.  
+- Example sign: “I want to locate previous food order lists so that I can see all the lists I have.”  
+""
+Example 1: As a shopper, I want to add items to my wishlist so that I can keep track of them.
+Problem: The rationale just repeats the action (“keep track of them”) without explaining the real benefit or value to the user.
+Improvement: As a shopper, I want to add items to my wishlist so that I can plan my purchases and prioritize what to buy next.
+""
+Example 2: As a reader, I want to mark articles as “read” so that I know which ones I have read.
+Problem: The “so that” clause merely restates the action without clarifying why it matters or what value it provides.
+Improvement: As a reader, I want to mark articles as “read” so that I can easily identify new content and focus on unread articles.
+
+---
+
+Output format:
+The response must be **valid JSON only**. Do not output text outside the JSON.  
+
+For each user story from the input set, the output must include:
+- "us_id" - the ID of the user story
+- "estimated_problem_id" - the detected problem ID (0–6)
+- "corrected_us" - rewrite the story minimally to remove the identified problem while preserving its intent
+- "optional_explanation" - explanation (string, optional)
+
+Example format:
+{ "results": [
+  {
+    "us_id": "US1",
+    "estimated_problem_id": 1,
+    "corrected_us": "As a shopper, I want an easy way to compare product prices, so that I can find the most affordable option.",
+    "optional_explanation": "The original story included exact UI widgets (drop-downs, sliders), which conflated problem with solution. The corrected version removes technical detail."
+  },
+  {
+    "us_id": "US2",
+    "estimated_problem_id": 3,
+    "corrected_us": "As a student, I want to export my notes, so that I can share them with classmates.",
+    "optional_explanation": "The original story asked to export, print, email, and archive notes (too many at once). This correction simplifies to one clear, sprint-sized goal."
+  },
+  {
+    "us_id": "US3",
+    "estimated_problem_id": 5,
+    "corrected_us": "As a teacher, I want to generate a class attendance report, so that I can track student participation.",
+    "optional_explanation": "The original story role was just 'business user', which was too vague. This correction specifies a real user role."
+  }
+]
+}
